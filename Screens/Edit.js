@@ -5,6 +5,8 @@ import {
   StatusBar,
   TextInput,
   TouchableOpacity,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from 'react-native';
 import styles from './Styles';
 import CardButton from '../Components/CardButton';
@@ -53,38 +55,41 @@ export default class Add extends React.Component {
   };
   render() {
     return (
-      <View style={styles.container}>
-        <StatusBar barStyle="light-content" />
-        <View>
-          <Text style={styles.appTitle}>Edit</Text>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+        <View style={styles.container}>
+          <StatusBar barStyle="light-content" />
+          <View>
+            <Text style={styles.appTitle}>Edit</Text>
 
-          <CardInput
-            style={styles.input}
-            changeText={this.onChangeTitle}
-            value={this.state.listItems.title}
-          />
-          <CardInput
-            style={styles.inputDesc}
-            changeText={this.onChangeDesc}
-            value={this.state.listItems.desc}
-            multiline="true"
-          />
-        </View>
+            <CardInput
+              style={styles.input}
+              changeText={this.onChangeTitle}
+              value={this.state.listItems.title}
+            />
+            <CardInput
+              placeholder="Description"
+              style={styles.inputDesc}
+              changeText={this.onChangeDesc}
+              value={this.state.listItems.desc}
+              multiline="true"
+            />
+          </View>
 
-        <View>
-          <CardButton
-            name="Delete"
-            style={styles.cardButtonDelete}
-            func={this.onDelete}
-          />
-          <CardButton
-            name="Done"
-            style={styles.cardButton}
-            func={this.onEdit}
-          />
-          <View style={{ padding: 10 }} />
+          <View>
+            <CardButton
+              name="Delete"
+              style={styles.cardButtonDelete}
+              func={this.onDelete}
+            />
+            <CardButton
+              name="Done"
+              style={styles.cardButton}
+              func={this.onEdit}
+            />
+            <View style={{ padding: 10 }} />
+          </View>
         </View>
-      </View>
+      </TouchableWithoutFeedback>
     );
   }
 }
