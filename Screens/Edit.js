@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   Keyboard,
+  Alert
 } from 'react-native';
 import styles from './Styles';
 import CardButton from '../Components/CardButton';
@@ -48,6 +49,21 @@ export default class Add extends React.Component {
     this.props.navigation.navigate('Main');
   };
   onDelete = () => {
+    Alert.alert(
+      'Delete',
+      'Are you sure you want to delete?'
+      [
+        {text: 'Cancel', onPress: () => console.log('Cencel')}
+        {text: 'OK', onPress: () => {
+            this.props.navigation.state.params.deleteItem(
+              this.props.navigation.getParam('indexNo')
+            );
+            this.props.navigation.navigate('Main');
+          }
+        },
+      ],
+    
+    )
     this.props.navigation.state.params.deleteItem(
       this.props.navigation.getParam('indexNo')
     );
